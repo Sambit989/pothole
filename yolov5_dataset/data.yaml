@@ -1,0 +1,5 @@
+names:
+- pothole
+nc: 1
+train: dataset/Pothole Dataset/images/train
+val: dataset/Pothole Dataset/images/val

@@ -1,0 +1,22 @@
+<!doctype html>
+<title>Pothole Detection & Dimension Estimation</title>
+<h1>Upload an image for detection</h1>
+{% if error %}
+<p style="color:red">{{ error }}</p>
+{% endif %}
+<form method=post enctype=multipart/form-data>
+  <input type=file name=file>
+  <p>Perceived focal length (F) in pixels (optional, leave blank to skip size estimation): <input type=text name=focal></p>
+  <p>Camera distance / height in cm (default 90): <input type=text name=distance value="90"></p>
+  <input type=submit value=Upload>
+</form>
+{% if image_url %}
+  <h2>Result</h2>
+  <img src="{{ url_for('outputs', p=image_url.split('/')[-1]) }}" width="640"><br>
+  <h3>Detections</h3>
+  <pre>{{ detections }}</pre>
+  {% if sizes %}
+  <h3>Estimated sizes (cm / cm^2)</h3>
+  <pre>{{ sizes }}</pre>
+  {% endif %}
+{% endif %}

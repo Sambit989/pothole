@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pothole Detection</title>
+</head>
+<body>
+  <h1>Pothole Detection with YOLOv5</h1>
+
+  <!-- Upload Form -->
+  <h2>Upload Image or Video</h2>
+  <form action="/detect" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <input type="submit" value="Upload" />
+  </form>
+
+  <!-- Uploaded Image -->
+  {% if uploaded_image_url %}
+    <h2>Uploaded Image</h2>
+    <img src="{{ uploaded_image_url }}" width="500" />
+  {% endif %}
+
+  <!-- Detection Result -->
+  {% if image_url %}
+    <h2>Detection Result</h2>
+    <img src="{{ image_url }}" width="500" />
+  {% endif %}
+
+  <!-- Estimated Sizes -->
+  {% if sizes %}
+    <h2>Estimated Sizes</h2>
+    <ul>
+      {% for size in sizes %}
+      <li>
+        Width: {{ size.width_cm|round(2) }} cm, 
+        Height: {{ size.height_cm|round(2) }} cm, 
+        Area: {{ size.area_cm2|round(2) }} cm²
+      </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</body>
+</html>
